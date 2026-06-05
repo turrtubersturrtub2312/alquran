@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Error - Muhammad Arifin (Apin)</title>
+    <style>
+        /* ==========================================================================
+           CSS GABUNGAN (KESAN AMARAN ERROR & LATAR BELAKANG POLIS BERGERAK)
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            /* Animasi latar belakang merah biru bergerak slow seperti lampu polis */
+            background: linear-gradient(120deg, #050000, #00000c, #050000);
+            background-size: 400% 400%;
+            animation: policeLight 6s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Animasi Lampu Polis Slow */
+        @keyframes policeLight {
+            0% { background-position: 0% 50%; background-color: rgba(150, 0, 0, 0.2); }
+            50% { background-position: 100% 50%; background-color: rgba(0, 0, 150, 0.2); }
+            100% { background-position: 0% 50%; background-color: rgba(150, 0, 0, 0.2); }
+        }
+
+        .error-container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+        }
+
+        /* Tulisan Merah Bercahaya (Glow Efek) */
+        .error-title {
+            color: #ff0000;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
+            animation: blink 1.5s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.8; text-shadow: 0 0 10px #ff0000; }
+            100% { opacity: 1; text-shadow: 0 0 20px #ff0000, 0 0 40px #ff3333; }
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.05);
+            border-left: 4px solid #ff0000;
+            border-radius: 4px;
+            text-align: justify;
+        }
+
+        /* Butang Reset */
+        .btn-reset {
+            background: linear-gradient(135deg, #ff0000, #b30000);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .btn-reset:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        /* Bahagian Ruang Komen */
+        .comment-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: left;
+        }
+
+        .comment-section h3 {
+            color: #3399ff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            resize: none;
+            transition: 0.3s;
+        }
+
+        .comment-form textarea:focus {
+            border-color: #3399ff;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-comment {
+            background: #3399ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-comment:hover {
+            background: #0077e6;
+        }
+
+        .comments-list {
+            margin-top: 25px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .comment-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #3399ff;
+        }
+
+        .user-comment {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .reply-box {
+            background: rgba(51, 153, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            border-left: 2px solid #3399ff;
+        }
+
+        .reply-author {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="error-title">⚠️ SYSTEM ERROR</div>
+        
+        <div class="error-message">
+            Maaf kami sedang beroperasi kerana ada Sistem Error sila mencuba lagi atau reset website ini! Dari Tuan Muhammad Arifin (Apin) kemungkinan akan selesai Error sistem ini berkemungkinan jatuh pada hari jumaat atau 3 hari Sila dukung kami!
+        </div>
+
+
+        <div class="comment-section">
+            <h3>Ruang Pertanyaan & Komen</h3>
+            <div class="comment-form">
+                <textarea id="comment-input" placeholder="Tulis apa-apa atau tanya soalan di sini..."></textarea>
+                <button class="btn-comment" onclick="addComment()">Hantar Komen</button>
+            </div>
+
+            <div class="comments-list" id="comments-list">
+                <div class="comment-box">
+                    <p class="user-comment"><strong>Hamba Allah:</strong> Assalamualaikum Tuan Apin, kenapa sistem error ya? Semoga cepat selesai urusan kemas kini web ini.</p>
+                    <div class="reply-box">
+                        <p class="reply-author">Tuan Muhammad Arifin (Apin):</p>
+                        <p>Waalaikumussalam, terima kasih atas sokongan! Sistem sedang dinaik taraf untuk menambah fungsi yang lebih besar. Insya-Allah akan siap dalam masa terdekat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi Butang Reset Website
+        function resetWebsite() {
+            alert("Sedang memulakan semula sambungan ke pelayan...");
+            window.location.reload();
+        }
+
+        // Fungsi Menambah Komen Baharu
+        function addComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            const commentsList = document.getElementById('comments-list');
+
+            if (commentText === "") {
+                alert("Sila tulis sesuatu sebelum menghantar komen.");
+                return;
+            }
+
+            // Cipta elemen kotak komen baru
+            const commentBox = document.createElement('div');
+            commentBox.className = 'comment-box';
+
+            // Masukkan teks komen pengguna dan sediakan balasan automatik daripada Tuan Apin
+            commentBox.innerHTML = `
+                <p class="user-comment"><strong>Pengguna Web:</strong> ${commentText}</p>
+                <div class="reply-box">
+                    <p class="reply-author">Tuan Muhammad Arifin (Apin):</p>
+                    <p>Terima kasih kerana bertanya. Soalan anda telah diterima! Saya akan meneliti perkara ini secepat mungkin bagi memulihkan sistem.</p>
+                </div>
+            `;
+
+            // Letakkan komen baharu di bahagian atas senarai
+            commentsList.insertBefore(commentBox, commentsList.firstChild);
+
+            // Bersihkan ruangan input teks selepas hantar
+            commentInput.value = "";
+        }
+    </script>
+</body>
+</html>
